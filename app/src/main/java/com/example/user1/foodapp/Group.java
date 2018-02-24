@@ -1,8 +1,6 @@
 package com.example.user1.foodapp;
 
 
-import android.graphics.Bitmap;
-
 import java.util.ArrayList;
 
 /**
@@ -12,18 +10,18 @@ import java.util.ArrayList;
 public class Group {
     private String name;
     private ArrayList<Eats> eats;
-    private ArrayList<People> people;
+    private ArrayList<User> people;
     double score;
     int photo;
 
-    public Group(String n, ArrayList<Eats> e, ArrayList<People> p,  int ph,double s){
+    public Group(String n, ArrayList<Eats> e, ArrayList<User> p, int ph, double s){
         name = n;
         eats = e;
         people = p;
         score = s;
         photo = ph;
     }
-    public Group(String n, ArrayList<Eats> e, ArrayList<People> p, int ph){
+    public Group(String n, ArrayList<Eats> e, ArrayList<User> p, int ph){
         name = n;
         eats = e;
         people = p;
@@ -39,7 +37,7 @@ public class Group {
         return eats;
     }
 
-    public ArrayList<People> getPeople() {
+    public ArrayList<User> getPeople() {
         return people;
     }
 
