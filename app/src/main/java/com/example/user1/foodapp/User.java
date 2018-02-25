@@ -1,5 +1,4 @@
 package com.example.user1.foodapp;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -16,6 +15,7 @@ public class User {
     private Set<String> mCuisinePrefs = new HashSet<>();
     private Set<String> mCuisineDislikes = new HashSet<>();
     private Set<String> mDietaryRestrictions = new HashSet<>();
+    private List<PastEvent> mHistory = new ArrayList<>();
 
     public User(String userId, String name) {
         mUserId = userId;
@@ -107,6 +107,14 @@ public class User {
         return mGroups;
     }
 
+    public void addHistory(PastEvent p) {
+        mHistory.add(p);
+    }
+
+    public List<PastEvent> getHistory() {
+        return mHistory;
+    }
+
     @Override
     public String toString() {
         String str = "";
@@ -122,6 +130,8 @@ public class User {
         for (String s : mCuisineDislikes) str += s + "\n";
         str += mDietaryRestrictions.size() + "\n";
         for (String s : mDietaryRestrictions) str += s + "\n";
+        str += mHistory.size() + "\n";
+        for (PastEvent s : mHistory) str += s.toString();
         str += mRadius + "\n";
         return str;
     }
@@ -140,6 +150,9 @@ public class User {
             for (int i = 0; i < numDislikes; i++) user.addCuisineDislike(input.readLine());
             Integer numRestrict = Integer.parseInt(input.readLine());
             for (int i = 0; i < numRestrict; i++) user.addDietaryRestrict(input.readLine());
+            Integer numHistory = Integer.parseInt(input.readLine());
+            for (int i = 0; i < numHistory; i++) user.addHistory(PastEvent.getEvent(input));
+
             user.setRadius(Double.parseDouble(input.readLine()));
             return user;
         } catch (IOException e) {
@@ -147,5 +160,4 @@ public class User {
         }
         return null;
     }
-
 }
