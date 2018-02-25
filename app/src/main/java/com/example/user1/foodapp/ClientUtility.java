@@ -19,6 +19,7 @@ public class ClientUtility {
     interface Commands {
         String REJECTED = "Rejected";
         String CLIENT_GET_CURRENT_USER_INFO = "get_current_user_info";
+        String UPDATE_SERVER_USER = "update_server_user";
         String CLIENT_JOIN_GROUP = "join_group";
         String CLIENT_CREATE_GROUP = "create_group";
 
@@ -68,6 +69,22 @@ public class ClientUtility {
             out.println(Commands.CLIENT_CREATE_GROUP);
             out.println(title);
             out.println(photoId);
+            return User.userFromInput(in);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static User updateServer(String userId, User user) {
+        try {
+            Socket socket = new Socket("localhost", PORT_NUMBER);
+            PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
+            BufferedReader in = new BufferedReader(
+                    new InputStreamReader(socket.getInputStream()));
+            out.println(userId);
+            out.println(Commands.UPDATE_SERVER_USER);
+            out.println(user.toString());
             return User.userFromInput(in);
         } catch (IOException e) {
             e.printStackTrace();
