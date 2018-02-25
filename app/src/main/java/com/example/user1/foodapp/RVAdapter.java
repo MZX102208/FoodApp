@@ -1,6 +1,7 @@
 package com.example.user1.foodapp;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -12,16 +13,20 @@ import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
+
 import java.util.ArrayList;
+import java.util.List;
 
 public class RVAdapter extends RecyclerView.Adapter<RVAdapter.GroupViewHolder>  {
 
-    ArrayList<Group> groups;
+    public static List<Group> groups;
     Context context;
 
     RecyclerView mRecyclerView;
 
-    public RVAdapter(ArrayList<Group> groups, Context con){
+    public RVAdapter(List<Group> groups, Context con){
         this.groups = groups;
         context = con;
     }
@@ -48,12 +53,13 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.GroupViewHolder>  
     public void onBindViewHolder(GroupViewHolder groupViewHolder, final int i) {
         groupViewHolder.groupname.setText(groups.get(i).getName());
         String s = "";
-        /*ArrayList<User> users = groups.get(i).getPeople();
+        List<User> users = groups.get(i).getPeople();
         for(User u : users){
             s+= u.getName()+" ";
         }
         groupViewHolder.people.setText(s);
-        groupViewHolder.time.setText(groups.get(i).getEats().get(groups.get(i).getEats().size()).time());*/
+            DateTimeFormatter fmt = DateTimeFormat.forPattern("d MMMM, yyyy");
+        //groupViewHolder.time.setText(groups.get(i).getEats().toString(fmt));
         groupViewHolder.score.setText(groups.get(i).getScore()+"");
 
        Picasso.with(this.context).load("https://graph.facebook.com/"+groups.get(i).getPhoto()+"/picture?type=large").into(groupViewHolder.groupPhoto);
@@ -86,7 +92,11 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.GroupViewHolder>  
         public void onClick(View view) {
             int position = getAdapterPosition();
             if (position != RecyclerView.NO_POSITION) {
-                Toast.makeText(mContext, position + "", Toast.LENGTH_SHORT).show();
+                Group g = groups.get(position);
+                Intent intent = new Intent(mContext,GroupInfoActivity.class);
+                intent.putExtra("group",g);
+                mContext.startActivity(intent);
+
             }
         }
     }

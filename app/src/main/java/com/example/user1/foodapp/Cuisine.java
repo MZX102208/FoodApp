@@ -41,6 +41,22 @@ public class Cuisine {
         String VEGETARIAN = "Vegetarian";
     }
 
+    public static List<String> initCategories(){
+        List<String> cuisines = new ArrayList<>();
+        cuisines.add(Categories.AMERICAN_FOOD);
+        cuisines.add(Categories.ASIAN_FOOD);
+        cuisines.add(Categories.EUROPEAN_FOOD);
+        cuisines.add(Categories.AFRICAN_MIDDLE_FOOD);
+        cuisines.add(Categories.SOUTH_CENTRAL_AMERICAN);
+        cuisines.add(Categories.SOUTH_ASIA_FOOD);
+        cuisines.add(Categories.FAST_FOOD);
+        cuisines.add(Categories.BAR_CAFE);
+        cuisines.add(Categories.PASTRIES_DESSERT);
+        cuisines.add(Categories.VEGETARIAN);
+        return cuisines;
+
+    }
+
     public static List<Cuisine> initCuisines() {
         List<Cuisine> cuisines = new ArrayList<>();
         cuisines.add(new Cuisine(1, "American", Categories.AMERICAN_FOOD));

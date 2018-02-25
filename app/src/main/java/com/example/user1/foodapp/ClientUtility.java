@@ -22,14 +22,13 @@ public class ClientUtility {
         String UPDATE_SERVER_USER = "update_server_user";
         String CLIENT_JOIN_GROUP = "join_group";
         String CLIENT_CREATE_GROUP = "create_group";
-
         String JOIN_GROUP_SUCCESS = "join_success";
         String JOIN_GROUP_FAIL = "join_fail";
     }
 
     public static User getCurrentUserInfo(String userId) {
         try {
-            Socket socket = new Socket("localhost", PORT_NUMBER);
+            Socket socket = new Socket("10.0.2.2", PORT_NUMBER);
             PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
             BufferedReader in = new BufferedReader(
                     new InputStreamReader(socket.getInputStream()));
@@ -44,7 +43,7 @@ public class ClientUtility {
 
     public static User joinGroup(String userId, int id) {
         try {
-            Socket socket = new Socket("localhost", PORT_NUMBER);
+            Socket socket = new Socket("10.0.2.2", PORT_NUMBER);
             PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
             BufferedReader in = new BufferedReader(
                     new InputStreamReader(socket.getInputStream()));
@@ -61,7 +60,7 @@ public class ClientUtility {
 
     public static User createGroup(String userId, String title, String photoId) {
         try {
-            Socket socket = new Socket("localhost", PORT_NUMBER);
+            Socket socket = new Socket("10.0.2.2", PORT_NUMBER);
             PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
             BufferedReader in = new BufferedReader(
                     new InputStreamReader(socket.getInputStream()));
@@ -78,7 +77,7 @@ public class ClientUtility {
 
     public static User updateServer(String userId, User user) {
         try {
-            Socket socket = new Socket("localhost", PORT_NUMBER);
+            Socket socket = new Socket("10.0.2.2", PORT_NUMBER);
             PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
             BufferedReader in = new BufferedReader(
                     new InputStreamReader(socket.getInputStream()));

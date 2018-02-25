@@ -4,10 +4,11 @@ import org.joda.time.DateTime;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PastEvent {
+public class PastEvent implements Serializable{
     private String mName;
     private DateTime mDate;
     private List<User> mParicipants = new ArrayList<>();

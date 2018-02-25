@@ -7,11 +7,13 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.transition.Slide;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -73,22 +75,31 @@ public class GroupFragment extends Fragment{
         RecyclerView rv = view.findViewById(R.id.rv);
         LinearLayoutManager llm = new LinearLayoutManager(view.getContext());
         rv.setLayoutManager(llm);
+
+        User u = MainActivity.getUser();
+        List<Group> group = u.getGroups();
+/*
+        User user = new User("100005494119625");
+        User user2 = new User("100000689692724");
+        User user3 = new User("100011876558552");
         Group group1 = new Group("Hack UTD squad","100005494119625");
+        group1.addPeople(user);
+        group1.addPeople(user2);
+        group1.addPeople(user3);
         Group group2 = new Group("Google Auto Admit","100000689692724");
         Group group3 = new Group("Competitive Yodeling","100011876558552");
         ArrayList<Group> groups = new ArrayList<>();
         groups.add(group1);
         groups.add(group2);
-        groups.add(group3);
-        RVAdapter adapter = new RVAdapter(groups,view.getContext());
+        groups.add(group3); */
+        RVAdapter adapter = new RVAdapter(group,view.getContext());
         rv.setAdapter(adapter);
-
 
         FloatingActionButton fb = view.findViewById(R.id.addgroupbutton);
         fb.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Make a new group
+
             }
         });
         return view;

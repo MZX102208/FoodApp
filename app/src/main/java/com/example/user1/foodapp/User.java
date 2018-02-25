@@ -2,12 +2,13 @@ package com.example.user1.foodapp;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class User {
+public class User implements Serializable{
     private String mName;
     private String mUserId;
     private String mPhotoId;
@@ -22,6 +23,10 @@ public class User {
     public User(String userId, String name) {
         mUserId = userId;
         mName = name;
+    }
+
+    public User(String photo) {
+        mPhotoId = photo;
     }
 
     public String getName() {

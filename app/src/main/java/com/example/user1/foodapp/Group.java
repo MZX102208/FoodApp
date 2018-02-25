@@ -1,12 +1,13 @@
 package com.example.user1.foodapp;
 
 import java.io.BufferedReader;
+import java.io.Serializable;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Group {
+public class Group implements Serializable{
     private String mName;
     private int mId;
     private List<PastEvent> mHistory;
@@ -18,6 +19,8 @@ public class Group {
         mName = name;
         mPhotoId = photoId;
         mScore = Math.random()*30.0;
+        mPeople = new ArrayList<>();
+        mHistory = new ArrayList<>();
     }
 
     public Group(String name, String photoId, int id) { //Mock Group
@@ -25,6 +28,8 @@ public class Group {
         mPhotoId = photoId;
         mId = id;
         mScore = Math.random()*30.0;
+        mPeople = new ArrayList<>();
+        mHistory = new ArrayList<>();
     }
 
 
