@@ -20,10 +20,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        RecyclerView rv = (RecyclerView)findViewById(R.id.rv);
+        RecyclerView rv = findViewById(R.id.rv);
         LinearLayoutManager llm = new LinearLayoutManager(getApplicationContext());
         rv.setLayoutManager(llm);
         Group group1 = new Group("Hack UTD squad","100005494119625");
@@ -33,11 +33,11 @@ public class MainActivity extends AppCompatActivity {
         groups.add(group1);
         groups.add(group2);
         groups.add(group3);
-        RVAdapter adapter = new RVAdapter(groups,getApplicationContext());
+        RVAdapter adapter = new RVAdapter(groups,this);
         rv.setAdapter(adapter);
 
 
-        FloatingActionButton fb = (FloatingActionButton)findViewById(R.id.addgroupbutton);
+        FloatingActionButton fb = findViewById(R.id.addgroupbutton);
         fb.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

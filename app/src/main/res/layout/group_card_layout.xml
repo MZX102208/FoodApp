@@ -9,13 +9,15 @@
         android:layout_margin="5dp"
         android:layout_gravity="center"
         android:clickable="true"
+        android:focusable="true"
         android:elevation="3dp"
         android:layout_height="wrap_content">
 
         <RelativeLayout
             android:layout_width="wrap_content"
             android:padding="15dp"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:background="?android:attr/selectableItemBackground">
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/group_photo"
                 android:layout_width="wrap_content"
