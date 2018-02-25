@@ -16,29 +16,18 @@
         android:background="?attr/colorPrimary">
     </android.support.v7.widget.Toolbar>
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_below="@id/toolbar"
-        android:layout_marginTop="5dp"
-        android:layout_height="match_parent">
-    <android.support.v7.widget.RecyclerView
+    !-- This could be your fragment container, or something -->
+    <FrameLayout
+        android:id="@+id/fl_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/rv">
+        android:layout_above="@+id/bottomBar" />
 
-
-    </android.support.v7.widget.RecyclerView>
-        <android.support.design.widget.FloatingActionButton
-            android:src="@drawable/ic_add"
-            app:fabSize="normal"
-            android:id="@+id/addgroupbutton"
-            android:layout_margin="10dp"
-            android:clickable="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentBottom="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-    </RelativeLayout>
+    <com.roughike.bottombar.BottomBar
+        android:id="@+id/bottomBar"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        app:bb_tabXmlResource="@xml/bottombar_tabs" />
 
 </RelativeLayout>
