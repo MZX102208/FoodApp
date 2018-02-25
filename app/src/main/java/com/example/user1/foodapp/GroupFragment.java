@@ -1,6 +1,7 @@
 package com.example.user1.foodapp;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -78,10 +79,10 @@ public class GroupFragment extends Fragment{
 
         User u = MainActivity.getUser();
         List<Group> group = u.getGroups();
-/*
-        User user = new User("100005494119625");
-        User user2 = new User("100000689692724");
-        User user3 = new User("100011876558552");
+
+        User user = new User("Michael","100005494119625");
+        User user2 = new User("Kyle","100000689692724");
+        User user3 = new User("John","100011876558552");
         Group group1 = new Group("Hack UTD squad","100005494119625");
         group1.addPeople(user);
         group1.addPeople(user2);
@@ -91,17 +92,19 @@ public class GroupFragment extends Fragment{
         ArrayList<Group> groups = new ArrayList<>();
         groups.add(group1);
         groups.add(group2);
-        groups.add(group3); */
-        RVAdapter adapter = new RVAdapter(group,view.getContext());
-        rv.setAdapter(adapter);
-
+        groups.add(group3);
+        group.addAll(groups);
         FloatingActionButton fb = view.findViewById(R.id.addgroupbutton);
         fb.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent = new Intent(view.getContext(),CreateGroup.class);
+                startActivity(intent);
             }
         });
+
+        RVAdapter adapter = new RVAdapter(group,view.getContext());
+        rv.setAdapter(adapter);
         return view;
     }
 

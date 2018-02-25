@@ -20,10 +20,15 @@ public class User implements Serializable{
     private Set<String> mDietaryRestrictions = new HashSet<>();
     private List<PastEvent> mHistory = new ArrayList<>();
 
-    public User(String userId, String name) {
+    public User(String userId, String name, String photo) {
         mUserId = userId;
         mName = name;
     }
+    public User(String name,String photo) {
+        mName = name;
+        mPhotoId = photo;
+    }
+
 
     public User(String photo) {
         mPhotoId = photo;

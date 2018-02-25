@@ -18,6 +18,8 @@ public class EditProfileActivity extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         Spinner spinner = findViewById(R.id.spinnerwithin);
         String[] dist = {"1 mi","5 mi","10 mi","20 mi","30 mi"};

@@ -54,13 +54,17 @@ public class Group implements Serializable{
         mHistory.add(p);
     }
 
+    public List<PastEvent> getmHistory() {
+        return mHistory;
+    }
+
     public List<PastEvent> getEats() {
         return mHistory;
     }
 
     public double getScore() {
         NumberFormat formatter = new DecimalFormat("#0.00");
-        return Double.parseDouble(formatter.format(mScore));
+        return mEvents.size()+mPeople.size() * ;
     }
 
     public void setScore(double d) {

@@ -54,12 +54,14 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.GroupViewHolder>  
         groupViewHolder.groupname.setText(groups.get(i).getName());
         String s = "";
         List<User> users = groups.get(i).getPeople();
-        for(User u : users){
-            s+= u.getName()+" ";
+        for(int j = 0; j<users.size();j++){
+            s+= users.get(j);
+            s+=" ,";
         }
         groupViewHolder.people.setText(s);
             DateTimeFormatter fmt = DateTimeFormat.forPattern("d MMMM, yyyy");
-        //groupViewHolder.time.setText(groups.get(i).getEats().toString(fmt));
+            int x = (int)(Math.random()*40);
+            groupViewHolder.time.setText(x+" days ago");
         groupViewHolder.score.setText(groups.get(i).getScore()+"");
 
        Picasso.with(this.context).load("https://graph.facebook.com/"+groups.get(i).getPhoto()+"/picture?type=large").into(groupViewHolder.groupPhoto);

@@ -29,7 +29,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".GroupInfoActivity" />
-        <activity android:name=".EditProfileActivity"></activity>
+        <activity android:name=".EditProfileActivity" />
+        <activity android:name=".CreateGroup"></activity>
     </application>
 
 </manifest>
