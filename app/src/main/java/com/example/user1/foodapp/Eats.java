@@ -1,4 +1,7 @@
 package com.example.user1.foodapp;
 
-public class Eats {
+public abstract class Eats {
+
+
+    public abstract String time();
 }

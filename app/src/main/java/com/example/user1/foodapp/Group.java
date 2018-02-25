@@ -1,6 +1,8 @@
 package com.example.user1.foodapp;
 
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 
 /**
@@ -12,22 +14,30 @@ public class Group {
     private ArrayList<Eats> eats;
     private ArrayList<User> people;
     double score;
-    int photo;
+    String photo;
 
-    public Group(String n, ArrayList<Eats> e, ArrayList<User> p, int ph, double s){
+    public Group(String n, String ph){
         name = n;
-        eats = e;
-        people = p;
-        score = s;
         photo = ph;
+        NumberFormat formatter = new DecimalFormat("#0.00");
+        score = Double.parseDouble(formatter.format(Math.random()*30.0));
     }
-    public Group(String n, ArrayList<Eats> e, ArrayList<User> p, int ph){
+    public Group(String n, ArrayList<Eats> e, ArrayList<User> p, String ph){
         name = n;
         eats = e;
         people = p;
         photo = ph;
         score = calculateScore(eats);
     }
+
+    public Group(String n, ArrayList<Eats> e, ArrayList<User> p, String ph, double s){
+        name = n;
+        eats = e;
+        people = p;
+        score = s;
+        photo = ph;
+    }
+
 
     public String getName() {
         return name;
@@ -45,7 +55,7 @@ public class Group {
         return score;
     }
 
-    public int getPhoto() {
+    public String getPhoto() {
         return photo;
     }
 
