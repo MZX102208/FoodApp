@@ -1,12 +1,18 @@
 package com.example.user1.foodapp;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+
+import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Target;
 
 
 /**
@@ -64,7 +70,37 @@ public class ProfileFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_profile, container, false);
+        View view = inflater.inflate(R.layout.fragment_profile, container, false);
+        final ImageView background = view.findViewById(R.id.backgroundprofile);
+        final ImageView profilePic = view.findViewById(R.id.profile_picture);
+        //Configure target for
+        Target target = new Target() {
+            @Override
+            public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
+                background.setImageBitmap(BlurImage.fastblur(bitmap, 1f, 10));
+            }
+
+            @Override
+            public void onBitmapFailed(Drawable errorDrawable) {
+                background.setImageResource(R.mipmap.ic_launcher);
+
+            }
+
+            @Override
+            public void onPrepareLoad(Drawable placeHolderDrawable) {
+
+            }
+        };
+
+
+        Picasso.with(view.getContext()).load("https://graph.facebook.com/100005494119625/picture?type=large").into(profilePic);
+        background.setTag(target);
+        Picasso.with(view.getContext())
+                .load("https://graph.facebook.com/100005494119625/picture?type=large")
+                .error(R.mipmap.ic_launcher)
+                .placeholder(R.mipmap.ic_launcher)
+                .into(target);
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event

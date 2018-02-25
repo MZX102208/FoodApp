@@ -24,35 +24,7 @@ public class ProfileActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         User user = new User("random","Sriram");
-        final ImageView background = findViewById(R.id.backgroundprofile);
-        final ImageView profilePic = findViewById(R.id.profile_picture);
-        //Configure target for
-        Target target = new Target() {
-            @Override
-            public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
-                background.setImageBitmap(BlurImage.fastblur(bitmap, 1f, 10));
-            }
 
-            @Override
-            public void onBitmapFailed(Drawable errorDrawable) {
-                background.setImageResource(R.mipmap.ic_launcher);
-
-            }
-
-            @Override
-            public void onPrepareLoad(Drawable placeHolderDrawable) {
-
-            }
-        };
-
-
-        Picasso.with(getApplicationContext()).load("https://graph.facebook.com/100005494119625/picture?type=large").into(profilePic);
-        background.setTag(target);
-        Picasso.with(this)
-                .load("https://graph.facebook.com/100005494119625/picture?type=large")
-                .error(R.mipmap.ic_launcher)
-                .placeholder(R.mipmap.ic_launcher)
-                .into(target);
 
 
     }
