@@ -1,4 +1,5 @@
 package com.example.user1.foodapp;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -9,6 +10,7 @@ import java.util.Set;
 public class User {
     private String mName;
     private String mUserId;
+    private String mPhotoId;
     private double mLongitude, mLatitude;
     private List<Group> mGroups = new ArrayList<>();
     private double mRadius;
@@ -78,6 +80,14 @@ public class User {
         mDietaryRestrictions.remove(d);
     }
 
+    public void setPhotoId(String id) {
+        mPhotoId = id;
+    }
+
+    public String getPhotoId() {
+        return mPhotoId;
+    }
+
     public Set<String> getCuisinePrefs() {
         return mCuisinePrefs;
     }
@@ -133,6 +143,7 @@ public class User {
         str += mHistory.size() + "\n";
         for (PastEvent s : mHistory) str += s.toString();
         str += mRadius + "\n";
+        str += mPhotoId + "\n";
         return str;
     }
 
@@ -154,10 +165,50 @@ public class User {
             for (int i = 0; i < numHistory; i++) user.addHistory(PastEvent.getEvent(input));
 
             user.setRadius(Double.parseDouble(input.readLine()));
+            user.setPhotoId(input.readLine());
             return user;
         } catch (IOException e) {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public static User surfaceUserFromInput(BufferedReader input) {
+        try {
+            User user = new User(input.readLine(), input.readLine());
+            user.setLatitude(Double.parseDouble(input.readLine()));
+            user.setLongitude(Double.parseDouble(input.readLine()));
+
+            Integer numPrefs = Integer.parseInt(input.readLine());
+            for (int i = 0; i < numPrefs; i++) user.addCuisinePref(input.readLine());
+            Integer numDislikes = Integer.parseInt(input.readLine());
+            for (int i = 0; i < numDislikes; i++) user.addCuisineDislike(input.readLine());
+            Integer numRestrict = Integer.parseInt(input.readLine());
+            for (int i = 0; i < numRestrict; i++) user.addDietaryRestrict(input.readLine());
+
+            user.setRadius(Double.parseDouble(input.readLine()));
+            user.setPhotoId(input.readLine());
+            return user;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public String surfaceToString() {
+        String str = "";
+        str += mUserId + "\n";
+        str += mName + "\n";
+        str += mLatitude + "\n";
+        str += mLongitude + "\n";
+        str += mCuisinePrefs.size() + "\n";
+        for (String s : mCuisinePrefs) str += s + "\n";
+        str += mCuisineDislikes.size() + "\n";
+        for (String s : mCuisineDislikes) str += s + "\n";
+        str += mDietaryRestrictions.size() + "\n";
+        for (String s : mDietaryRestrictions) str += s + "\n";
+        str += mRadius + "\n";
+        str += mPhotoId + "\n";
+        return str;
     }
 }
