@@ -1,0 +1,10 @@
+<tabs>
+    <tab
+        id="@+id/tab_group"
+        icon="@drawable/ic_group"
+        title="Favorites" />
+    <tab
+        id="@+id/tab_profile"
+        icon="@drawable/ic_action_name"
+        title="Profile" />
+</tabs>
