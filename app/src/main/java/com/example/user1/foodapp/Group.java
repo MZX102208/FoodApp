@@ -10,8 +10,9 @@ import java.util.List;
 public class Group implements Serializable{
     private String mName;
     private int mId;
-    private List<PastEvent> mHistory;
-    private List<User> mPeople;
+    private List<PastEvent> mHistory = new ArrayList<>();
+    private List<User> mPeople = new ArrayList<>();
+    private List<Event> mEvents = new ArrayList<>();
     private double mScore;
     private String mPhotoId;
 
@@ -23,7 +24,7 @@ public class Group implements Serializable{
         mHistory = new ArrayList<>();
     }
 
-    public Group(String name, String photoId, int id) { //Mock Group
+    public Group(String name, String photoId, int id) {
         mName = name;
         mPhotoId = photoId;
         mId = id;
@@ -66,6 +67,18 @@ public class Group implements Serializable{
         mScore = d;
     }
 
+    public List<Event> getEvents() {
+        return mEvents;
+    }
+
+    public void addEvent(Event e) {
+        mEvents.add(e);
+    }
+
+    public void removeEvent(Event e) {
+        mEvents.remove(e);
+    }
+
     public String getPhoto() {
         return mPhotoId;
     }
@@ -83,6 +96,8 @@ public class Group implements Serializable{
         for (PastEvent p : mHistory) str += p.toString();
         str += mPeople.size() + "\n";
         for (User u : mPeople) str += u.surfaceToString();
+        str += mEvents.size() + "\n";
+        for (Event e : mEvents) str += e.toString();
         str += mScore + "\n";
         return str;
     }
@@ -98,6 +113,8 @@ public class Group implements Serializable{
             for (int i = 0; i < numHistory; i++) g.addHistory(PastEvent.getEvent(input));
             int numPeople = Integer.parseInt(input.readLine());
             for (int i = 0; i < numPeople; i++) g.addPeople(User.surfaceUserFromInput(input));
+            int numEvents = Integer.parseInt(input.readLine());
+            for (int i = 0; i < numEvents; i++) g.addEvent(Event.readInEvent(input));
             g.setScore(Double.parseDouble(input.readLine()));
             return g;
         } catch (Exception e) {

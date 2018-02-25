@@ -130,6 +130,18 @@ public class User implements Serializable{
         return mHistory;
     }
 
+    public void setCuisinePrefs(Set<String> list) {
+        mCuisinePrefs = list;
+    }
+
+    public void setCuisineDislikes(Set<String> list) {
+        mCuisineDislikes = list;
+    }
+
+    public void setDietaryRestrictions(Set<String> list) {
+        mDietaryRestrictions = list;
+    }
+
     @Override
     public String toString() {
         String str = "";
