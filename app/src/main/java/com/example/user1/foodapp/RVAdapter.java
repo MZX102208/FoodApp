@@ -3,12 +3,14 @@ package com.example.user1.foodapp;
 import android.content.Context;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
@@ -18,10 +20,19 @@ import java.util.ArrayList;
  * Created by SriramHariharan on 2/24/18.
  */
 
-public class RVAdapter extends RecyclerView.Adapter<RVAdapter.GroupViewHolder> {
+public class RVAdapter extends RecyclerView.Adapter<RVAdapter.GroupViewHolder>  {
 
     ArrayList<Group> groups;
     Context context;
+    private final View.OnClickListener onClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            int itemposition = mRecyclerView.getChildLayoutPosition(view);
+            Toast.makeText(context,itemposition+"",Toast.LENGTH_SHORT);
+        }
+    };
+
+    RecyclerView mRecyclerView;
 
     public RVAdapter(ArrayList<Group> groups, Context con){
         this.groups = groups;
@@ -36,17 +47,20 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.GroupViewHolder> {
     @Override
     public void onAttachedToRecyclerView(RecyclerView recyclerView) {
         super.onAttachedToRecyclerView(recyclerView);
+        mRecyclerView = recyclerView;
     }
 
 
     @Override
     public GroupViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.group_card_layout, viewGroup, false);
+        v.setOnClickListener(onClickListener);
         GroupViewHolder gv = new GroupViewHolder(v);
         return gv;
     }
+
         @Override
-    public void onBindViewHolder(GroupViewHolder groupViewHolder, int i) {
+    public void onBindViewHolder(GroupViewHolder groupViewHolder, final int i) {
         groupViewHolder.groupname.setText(groups.get(i).getName());
         String s = "";
 //        ArrayList<User> users = groups.get(i).getPeople();
@@ -79,6 +93,7 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.GroupViewHolder> {
             score = (TextView) itemView.findViewById(R.id.foodiescore);
             groupPhoto = (ImageView) itemView.findViewById(R.id.group_photo);
         }
+
     }
 
 
