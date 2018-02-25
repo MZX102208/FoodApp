@@ -1,4 +1,5 @@
 package com.example.user1.foodapp;
+
 import java.io.BufferedReader;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
@@ -76,7 +77,7 @@ public class Group {
         str += mHistory.size() + "\n";
         for (PastEvent p : mHistory) str += p.toString();
         str += mPeople.size() + "\n";
-        for (User u : mPeople) str += u.toString();
+        for (User u : mPeople) str += u.surfaceToString();
         str += mScore + "\n";
         return str;
     }
@@ -91,7 +92,7 @@ public class Group {
             int numHistory = Integer.parseInt(input.readLine());
             for (int i = 0; i < numHistory; i++) g.addHistory(PastEvent.getEvent(input));
             int numPeople = Integer.parseInt(input.readLine());
-            for (int i = 0; i < numPeople; i++) g.addPeople(User.userFromInput(input));
+            for (int i = 0; i < numPeople; i++) g.addPeople(User.surfaceUserFromInput(input));
             g.setScore(Double.parseDouble(input.readLine()));
             return g;
         } catch (Exception e) {
