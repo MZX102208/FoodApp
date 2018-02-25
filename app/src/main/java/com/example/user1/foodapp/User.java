@@ -2,11 +2,20 @@ package com.example.user1.foodapp;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 public class User {
     private String mName;
     private String mUserId;
     private double mLongitude, mLatitude;
+    private List<Group> mGroups = new ArrayList<>();
+    private double mRadius;
+    private Set<String> mCuisinePrefs = new HashSet<>();
+    private Set<String> mCuisineDislikes = new HashSet<>();
+    private Set<String> mDietaryRestrictions = new HashSet<>();
 
     public User(String userId, String name) {
         mUserId = userId;
@@ -37,6 +46,67 @@ public class User {
         this.mLatitude = mLatitude;
     }
 
+    public double getRadius() {
+        return mRadius;
+    }
+
+    public void setRadius(double r) {
+        mRadius = r;
+    }
+
+    public void addCuisinePref(String c) {
+        mCuisinePrefs.add(c);
+    }
+
+    public void removeCuisinePref(String c) {
+        mCuisinePrefs.remove(c);
+    }
+
+    public void addCuisineDislike(String c) {
+        mCuisineDislikes.add(c);
+    }
+
+    public void removeCuisineDislike(String c) {
+        mCuisineDislikes.remove(c);
+    }
+
+    public void addDietaryRestrict(String d) {
+        mDietaryRestrictions.add(d);
+    }
+
+    public void removeDietaryRestrict(String d) {
+        mDietaryRestrictions.remove(d);
+    }
+
+    public Set<String> getCuisinePrefs() {
+        return mCuisinePrefs;
+    }
+
+    public Set<String> getCuisineDislikes() {
+        return mCuisineDislikes;
+    }
+
+    public Set<String> getDietaryRestrictions() {
+        return mDietaryRestrictions;
+    }
+
+    public void removeGroup(int groupId) {
+        for (int i = 0; i < mGroups.size(); i++) {
+            if (mGroups.get(i).getId() == groupId) {
+                mGroups.remove(i);
+                break;
+            }
+        }
+    }
+
+    public void addGroup(Group g) {
+        mGroups.add(g);
+    }
+
+    public List<Group> getGroups() {
+        return mGroups;
+    }
+
     @Override
     public String toString() {
         String str = "";
@@ -44,6 +114,15 @@ public class User {
         str += mName + "\n";
         str += mLatitude + "\n";
         str += mLongitude + "\n";
+        str += mGroups.size() + "\n";
+        for (Group g : mGroups) str += g.toString();
+        str += mCuisinePrefs.size() + "\n";
+        for (String s : mCuisinePrefs) str += s + "\n";
+        str += mCuisineDislikes.size() + "\n";
+        for (String s : mCuisineDislikes) str += s + "\n";
+        str += mDietaryRestrictions.size() + "\n";
+        for (String s : mDietaryRestrictions) str += s + "\n";
+        str += mRadius + "\n";
         return str;
     }
 
@@ -52,10 +131,21 @@ public class User {
             User user = new User(input.readLine(), input.readLine());
             user.setLatitude(Double.parseDouble(input.readLine()));
             user.setLongitude(Double.parseDouble(input.readLine()));
+
+            Integer numGroups = Integer.parseInt(input.readLine());
+            for (int i = 0; i < numGroups; i++) user.addGroup(Group.getGroupFromInput(input));
+            Integer numPrefs = Integer.parseInt(input.readLine());
+            for (int i = 0; i < numPrefs; i++) user.addCuisinePref(input.readLine());
+            Integer numDislikes = Integer.parseInt(input.readLine());
+            for (int i = 0; i < numDislikes; i++) user.addCuisineDislike(input.readLine());
+            Integer numRestrict = Integer.parseInt(input.readLine());
+            for (int i = 0; i < numRestrict; i++) user.addDietaryRestrict(input.readLine());
+            user.setRadius(Double.parseDouble(input.readLine()));
             return user;
         } catch (IOException e) {
             e.printStackTrace();
         }
         return null;
     }
+
 }
