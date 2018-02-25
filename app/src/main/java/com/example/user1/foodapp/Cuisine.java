@@ -36,9 +36,6 @@ public class Cuisine {
         String SOUTH_CENTRAL_AMERICAN = "South American/Central American Food";
         String SOUTH_ASIA_FOOD = "South Asia Food";
         String FAST_FOOD = "Fast Food";
-        String BREAKFAST_FOOD = "Breakfast Food";
-        String SANDWICHES = "Sandwiches";
-        String PIZZA = "Pizza";
         String BAR_CAFE = "Bar/Cafe";
         String PASTRIES_DESSERT = "Dessert & Pastries";
         String VEGETARIAN = "Vegetarian";
@@ -90,10 +87,10 @@ public class Cuisine {
         cuisines.add(new Cuisine(148, "Indian", Categories.SOUTH_ASIA_FOOD));
         cuisines.add(new Cuisine(40, "Fast Food", Categories.FAST_FOOD));
         cuisines.add(new Cuisine(997, "Taco", Categories.FAST_FOOD));
-        cuisines.add(new Cuisine(959, "Donuts", Categories.BREAKFAST_FOOD));
-        cuisines.add(new Cuisine(995, "Bagels", Categories.BREAKFAST_FOOD));
-        cuisines.add(new Cuisine(192, "Deli", Categories.SANDWICHES));
-        cuisines.add(new Cuisine(304, "Sandwich", Categories.SANDWICHES));
+        cuisines.add(new Cuisine(959, "Donuts", Categories.AMERICAN_FOOD));
+        cuisines.add(new Cuisine(995, "Bagels", Categories.AMERICAN_FOOD));
+        cuisines.add(new Cuisine(192, "Deli", Categories.FAST_FOOD));
+        cuisines.add(new Cuisine(304, "Sandwich", Categories.FAST_FOOD));
         cuisines.add(new Cuisine(30, "Cafe", Categories.BAR_CAFE));
         cuisines.add(new Cuisine(161, "Coffee and Tea", Categories.BAR_CAFE));
         cuisines.add(new Cuisine(164, "Juices", Categories.BAR_CAFE));
@@ -106,7 +103,7 @@ public class Cuisine {
         cuisines.add(new Cuisine(270, "Beverages", Categories.PASTRIES_DESSERT));
         cuisines.add(new Cuisine(501, "Frozen Yogurt", Categories.PASTRIES_DESSERT));
         cuisines.add(new Cuisine(308, "Vegetarian", Categories.VEGETARIAN));
-        cuisines.add(new Cuisine(82, "Pizza", Categories.PIZZA));
+        cuisines.add(new Cuisine(82, "Pizza", Categories.FAST_FOOD));
 
         return cuisines;
     }
