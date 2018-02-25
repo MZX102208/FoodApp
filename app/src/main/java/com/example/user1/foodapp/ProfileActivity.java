@@ -21,21 +21,21 @@ public class ProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
-        Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         User user = new User("random","Sriram");
-        final ImageView bacground = (ImageView)findViewById(R.id.backgroundprofile);
-        final ImageView profilepic = (ImageView)findViewById(R.id.profile_picture);
+        final ImageView background = findViewById(R.id.backgroundprofile);
+        final ImageView profilePic = findViewById(R.id.profile_picture);
         //Configure target for
         Target target = new Target() {
             @Override
             public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
-                bacground.setImageBitmap(BlurImage.fastblur(bitmap, 1f, 10));
+                background.setImageBitmap(BlurImage.fastblur(bitmap, 1f, 10));
             }
 
             @Override
             public void onBitmapFailed(Drawable errorDrawable) {
-                bacground.setImageResource(R.mipmap.ic_launcher);
+                background.setImageResource(R.mipmap.ic_launcher);
 
             }
 
@@ -46,8 +46,8 @@ public class ProfileActivity extends AppCompatActivity {
         };
 
 
-        Picasso.with(getApplicationContext()).load("https://graph.facebook.com/100005494119625/picture?type=large").into(profilepic);
-        bacground.setTag(target);
+        Picasso.with(getApplicationContext()).load("https://graph.facebook.com/100005494119625/picture?type=large").into(profilePic);
+        background.setTag(target);
         Picasso.with(this)
                 .load("https://graph.facebook.com/100005494119625/picture?type=large")
                 .error(R.mipmap.ic_launcher)
